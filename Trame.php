@@ -12,25 +12,25 @@ class Trame extends CoreModel {
      * @param chantier $chantier [description]
      * @return [array]           [All content line]
      */
-	public function setTachesToExport(array $taches, chantier $chantier)
-	{
+    public function setTachesToExport(array $taches, chantier $chantier)
+    {
         $output = array();
         
         foreach ($taches as $t) {
-			$output[$t->id][] = $chantier->referenceinterne;
-			$output[$t->id][] = $t->designation;
-			$output[$t->id][] = $t->batimentvalue;
-			$output[$t->id][] = $t->niveauvalue;
-			$output[$t->id][] = $t->zonevalue;
-			$output[$t->id][] = $t->techniquevalue;
-			$output[$t->id][] = $t->tachevalue;
-			$output[$t->id][] = outils::convertMinToHour($t->nbrehmarchebase);
-			$output[$t->id][] = outils::convertMinToHour($t->nbrehtravauxsuppl);
-			$output[$t->id][] = $t->tauxsoustraitance;
+            $output[$t->id][] = $chantier->referenceinterne;
+            $output[$t->id][] = $t->designation;
+            $output[$t->id][] = $t->batimentvalue;
+            $output[$t->id][] = $t->niveauvalue;
+            $output[$t->id][] = $t->zonevalue;
+            $output[$t->id][] = $t->techniquevalue;
+            $output[$t->id][] = $t->tachevalue;
+            $output[$t->id][] = outils::convertMinToHour($t->nbrehmarchebase);
+            $output[$t->id][] = outils::convertMinToHour($t->nbrehtravauxsuppl);
+            $output[$t->id][] = $t->tauxsoustraitance;
         }
 
         return (array)$output;
-	}
+    }
 
     /**
      * With filename return all content line to an array
@@ -112,15 +112,15 @@ class Trame extends CoreModel {
         return (int)$newJdv->jdvid;
     }
 
-	/**
-	 * Export Data in CSV
-	 *
-	 * @version  08-08-2013
-	 * @param  [array] $cols     [Name description for all calls]
-	 * @param  [array] $datas    [All data in a correct order]
-	 * @param  string $filename [filename for csv output]
-	 * @return CSV Output, nothing for you php
-	 */
+    /**
+     * Export Data in CSV
+     *
+     * @version  08-08-2013
+     * @param  [array] $cols     [Name description for all calls]
+     * @param  [array] $datas    [All data in a correct order]
+     * @param  string $filename [filename for csv output]
+     * @return CSV Output, nothing for you php
+     */
     public function renderCsv(array $cols, array $datas, $filename="export")
     {
         header("content-type: application/vnd.ms-excel; charset=UTF-8");
